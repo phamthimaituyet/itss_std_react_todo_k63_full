@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 function Input( { onAdd } ) {
-  const [text, setText] = React.useState('');
+  const [text, setText] = useState('');
 
   const handleChange = e => setText(e.target.value);
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 /* コンポーネント */
 import TodoItem from './TodoItem';
@@ -10,13 +10,13 @@ import Filter from './Filter';
 import useFbStorage from '../hooks/fbStorage';
 
 /* ライブラリ */
-import {getKey} from "../lib/util";
+// import {getKey} from "../lib/util";
 
 function Todo() {
   // const [items, putItems, clearItems] = useStorage();
   const [items, addItem, updateItem, clearItems] = useFbStorage();
   
-  const [filter, setFilter] = React.useState('ALL');
+  const [filter, setFilter] = useState('ALL');
 
   const displayItems = items.filter(item => {
     if (filter === 'ALL') return true;
