@@ -1,6 +1,9 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
+import 'firebase/compat/storage';
+import { getStorage } from "firebase/storage";
+import { initializeApp } from "@firebase/app";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBDZtjN-lDrcf9pVFLaBHVa2djQqhv5tUM",
@@ -10,6 +13,15 @@ const firebaseConfig = {
   messagingSenderId: "292492282041",
   appId: "1:292492282041:web:4b7906600a07671e92f368"
 };
+
+const app = initializeApp({
+  apiKey: "AIzaSyBDZtjN-lDrcf9pVFLaBHVa2djQqhv5tUM",
+  authDomain: "fir-sample-2fa9b.firebaseapp.com",
+  projectId: "fir-sample-2fa9b",
+  storageBucket: "fir-sample-2fa9b.appspot.com",
+  messagingSenderId: "292492282041",
+  appId: "1:292492282041:web:4b7906600a07671e92f368"
+});
 
 firebase.initializeApp(firebaseConfig);
 
@@ -96,6 +108,7 @@ export const updateUser = async (user, image) => {
 
 export const uploadImage = async (image) => {
   const ref = firebase.storage().ref().child(`/images/${image.name}`);
+  console.log(ref)
   let downloadUrl = "";
   try {
     await ref.put(image);
@@ -105,3 +118,8 @@ export const uploadImage = async (image) => {
   }
   return downloadUrl;
 };
+
+
+const storage = getStorage(app);
+
+export { storage };
